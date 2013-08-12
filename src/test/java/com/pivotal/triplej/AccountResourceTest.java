@@ -9,9 +9,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.Assert.assertEquals;
 
-public class HealthCheckResourceTest {
+public class AccountResourceTest {
   private static App app;
 
   @BeforeClass
@@ -26,16 +26,15 @@ public class HealthCheckResourceTest {
   }
 
   @Test
-  public void basicHealthCheck() throws Exception {
+  public void listAccounts() throws Exception {
     HttpClient httpclient = new DefaultHttpClient();
     try {
-      HttpGet httpget = new HttpGet("http://localhost:8080/health");
+      HttpGet httpget = new HttpGet("http://localhost:8080/accounts");
       ResponseHandler<String> responseHandler = new BasicResponseHandler();
       String responseBody = httpclient.execute(httpget, responseHandler);
-      assertTrue(responseBody.indexOf("Service is operating normally") > 0);
+      assertEquals("[{\"id\":2,\"name\":\"coke\"},{\"id\":1,\"name\":\"pepsi\"}]", responseBody);
     } finally {
       httpclient.getConnectionManager().shutdown();
     }
-
   }
 }

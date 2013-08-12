@@ -9,6 +9,7 @@ public class ResourceModule extends JerseyServletModule {
   @Override
   protected void configureServlets() {
     bind(HealthCheckResource.class);
+    bind(AccountResource.class);
     bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);
     serve("/*").with(GuiceContainer.class);
   }
