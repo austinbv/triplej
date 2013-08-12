@@ -14,7 +14,7 @@ public class Environment extends AbstractModule {
   private Properties properties;
 
   public Environment() throws IOException {
-    this(System.getProperty("ENV"));
+    this(System.getProperty("ENV", "development"));
   }
 
   public Environment(String environment) throws IOException {
