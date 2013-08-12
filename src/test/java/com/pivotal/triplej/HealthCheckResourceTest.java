@@ -5,26 +5,11 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class HealthCheckResourceTest {
-  private static App app;
-
-  @BeforeClass
-  public static void setUp() throws Exception {
-    app = new App();
-    app.start();
-  }
-
-  @AfterClass
-  public static void tearDown() throws Exception {
-    app.stop();
-  }
-
+public class HealthCheckResourceTest extends AppRunner {
   @Test
   public void basicHealthCheck() throws Exception {
     HttpClient httpclient = new DefaultHttpClient();
@@ -36,6 +21,5 @@ public class HealthCheckResourceTest {
     } finally {
       httpclient.getConnectionManager().shutdown();
     }
-
   }
 }

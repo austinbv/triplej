@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface AccountMapper {
 
-  @Select("select id, name from accounts order by name")
+  @Select("select id, name from accounts order by name asc")
   List<Account> getAccounts();
 }

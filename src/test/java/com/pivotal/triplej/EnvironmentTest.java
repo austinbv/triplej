@@ -17,17 +17,17 @@ public class EnvironmentTest {
     A a = injector.getInstance(A.class);
     assertEquals("42", a.getValue());
   }
-}
 
-class A {
-  private String value;
+  static class A {
+    private String value;
 
-  @Inject
-  A(@Named("a.value") String value) {
-    this.value = value;
-  }
+    @Inject
+    A(@Named("a.value") String value) {
+      this.value = value;
+    }
 
-  String getValue() {
-    return value;
+    String getValue() {
+      return value;
+    }
   }
 }
